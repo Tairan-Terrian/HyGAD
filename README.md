@@ -13,7 +13,7 @@ PyTorch implementation of the paper "[Hybrid Consistency Data Augmentation for G
 # Preprocessing
 
 ## Dataset
-Download datasets into file './data/'  
+Download datasets into file  `./data/ ` 
   
 [Amazon] and [Yelp]:  [https://docs.dgl.ai/en/0.8.x/api/python/dgl.data.html](https://docs.dgl.ai/en/0.8.x/api/python/dgl.data.html) 
 
