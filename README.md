@@ -1,55 +1,52 @@
-## Introduction:
-This is the code for the ICLR 2024 paper of **ConsisGAD**: [Consistency Training with Learnable Data Augmentation for Graph Anomaly Detection with Limited Supervision.](https://openreview.net/forum?id=elMKXvhhQ9)
+# Hybrid Consistency Data Augmentation for Graph Anomaly Detection
 
-In this work, we propose a novel framework, ConsisGAD, which is tailored for graph anomaly detection in scenarios characterized by limited supervision and is anchored in the principles of consistency training. Under limited supervision, ConsisGAD effectively leverages the abundance of unlabeled data for consistency training by incorporating a novel learnable data augmentation mechanism, thereby introducing controlled noise into the dataset. Moreover, ConsisGAD takes advantage of the variance in homophily distribution between normal and anomalous nodes to craft a simplified GNN backbone, enhancing its capability to effectively distinguish between these two classes. A brief overview of our framework is illustrated in the following picture.
+PyTorch implementation of the paper "[Hybrid Consistency Data Augmentation for Graph Anomaly Detection]()".
 
-<p align="center">
-  <img src="framework.png" alt="Overall framework of ConsisGAD.">
-</p>
+#  Requirments
++ torch==2.4.0+cu121
++ torchvision==0.19.0+cu121
++ torch-geometric==2.6.1
++ torch-scatter==2.1.2
++ torch-sparse==0.6.18
++ scikit-learn==1.3.2
++ dgl==1.1.3+cu121
+# Preprocessing
 
-This repository contains the source code for our Graph Neural Network (GNN) backbone, consistency training procedure, and learnable data augmentation module. Below is an overview of the key components and their locations within the repository:
+## Dataset
+Download datasets into file './data/'  
+  
+[Amazon] and [Yelp]([http://snap.stanford.edu/jodie/wikipedia.csv](https://docs.dgl.ai/en/0.8.x/api/python/dgl.data.html)  
 
-- **GNN Backbone Model**: The core implementation of our GNN backbone model is encapsulated within the `simpleGNN_MR` class located in the `models.py` file.
+[T-Finance] adn [T-Social]([http://snap.stanford.edu/jodie/mooc.csv](https://github.com/squareRoot3/Rethinking-Anomaly-Detection)
 
-- **Consistency Training Procedure**: The consistency training procedure is implemented through the `UDA_train_epoch` function, which can be found in the `main.py` file.
+## Structural Consistency Augmentation
+We use the diffusion wavelets to generate structural embeddings for nodes with high structral consistency, which are saved into file './data/xx_embedding.csv'.
+We put the generated structural embeddings of Amazon in './data/amazon_embedding.csv' for quick access.
 
-- **Learnable Data Augmentation**: Our learnable data augmentation is realized via the `SoftAttentionDrop` class, which is also located in the `main.py` file.
+The Structural Consistency Augmentation of other datasets below as an example for running instructions:
+```python
+# Amazon
+python diffusion.py --dataset amazon --output /data/amazon_embedding.csv
+# YelpChi
+python diffusion.py --dataset yelp --output /data/yelp_embedding.csv
+# T-Finance
+python diffusion.py --dataset tfinance --output /data/tfinance_embedding.csv
+# T-Social
+python diffusion.py --dataset tsocial --output /data/tsocial_embedding.csv
+```
+## Running
 
-## Directory Structure
-The repository is organized into several directories, each serving a specific purpose:
-
-- `data/`: This directory houses the datasets utilized in our work.
-
-- `config/`: This folder stores the hyper-parameter configuration of our model.
-
-- `modules/`: Auxiliary components of our model are stored in this directory. It includes important modules, such as the data loader `data_loader.py` and the evaluation pipeline `evaluation.py`.
-
-- `model-weights/`: Here, we store the trained weights of our model.
-
-## Installation:
-- Install required packages: `pip install -r requirements.txt` 
-- Dataset resources:
-    - For Amazon and YelpChi, we use the built-in datasets in the DGL package https://docs.dgl.ai/en/0.8.x/api/python/dgl.data.html.
-    - For T-Finance and T-Social, we download the datasets from https://github.com/squareRoot3/Rethinking-Anomaly-Detection. 
-    - Please download and unzip all the files in the `data/` folder.
-
-## Usage:
-- Hyper-parameter settings for all datasets are put into the `config/` folder.
-- To run the model, use `--config` to specify hyper-parameters and `--runs` the number of running times.
-- If you want to run the YelpChi dataset 5 times, please execute this command: `python main.py --config 'config/yelp.yml' --runs 5`.
-
-## Citation
-If you find our work useful, please cite:
+Running HyGAD on four benchmark datasets, which the hyper parameter settings are in the 'config/xx.yml':
+```python
+# Run Amazon
+python main.py --config config/amazon.yml --runs 5
+# Run YelpChi
+python main.py --config config/yelp.yml --runs 5
+# Run T-Finance
+python main.py --config config/tfinance.yml --runs 5
+# Run T-Social
+python main.py --config config/tsocial.yml --runs 5
 
 ```
-@inproceedings{
-chen2024consistency,
-title={Consistency Training with Learnable Data Augmentation for Graph Anomaly Detection with Limited Supervision},
-author={Nan Chen and Zemin Liu and Bryan Hooi and Bingsheng He and Rizal Fathony and Jun Hu and Jia Chen},
-booktitle={The Twelfth International Conference on Learning Representations},
-year={2024},
-url={https://openreview.net/forum?id=elMKXvhhQ9}
-}
-```
 
-Feel free to contact nanchansysu@gmail.com if you have any questions.
+
