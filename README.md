@@ -15,9 +15,9 @@ PyTorch implementation of the paper "[Hybrid Consistency Data Augmentation for G
 ## Dataset
 Download datasets into file './data/'  
   
-[Amazon] and [Yelp]  [http://snap.stanford.edu/jodie/wikipedia.csv](https://docs.dgl.ai/en/0.8.x/api/python/dgl.data.html) 
+[Amazon] and [Yelp]  [https://docs.dgl.ai/en/0.8.x/api/python/dgl.data.html](https://docs.dgl.ai/en/0.8.x/api/python/dgl.data.html) 
 
-[T-Finance] adn [T-Social]  [http://snap.stanford.edu/jodie/mooc.csv](https://github.com/squareRoot3/Rethinking-Anomaly-Detection) 
+[T-Finance] adn [T-Social]  [https://docs.dgl.ai/en/0.8.x/api/python/dgl.data.html](https://github.com/squareRoot3/Rethinking-Anomaly-Detection) 
 
 ## Structural Consistency Augmentation
 We use the diffusion wavelets to generate structural embeddings for nodes with high structral consistency, which are saved into file './data/xx_embedding.csv'.
