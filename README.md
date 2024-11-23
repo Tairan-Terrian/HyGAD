@@ -15,13 +15,13 @@ PyTorch implementation of the paper "[Hybrid Consistency Data Augmentation for G
 ## Dataset
 Download datasets into file  `./data/ ` 
   
-[Amazon] and [Yelp]:  [https://docs.dgl.ai/en/0.8.x/api/python/dgl.data.html](https://docs.dgl.ai/en/0.8.x/api/python/dgl.data.html) 
+`Amazon` and  `Yelp`:  [https://docs.dgl.ai/en/0.8.x/api/python/dgl.data.html](https://docs.dgl.ai/en/0.8.x/api/python/dgl.data.html) 
 
-[T-Finance] and [T-Social]:  [https://github.com/squareRoot3/Rethinking-Anomaly-Detection](https://github.com/squareRoot3/Rethinking-Anomaly-Detection) 
+`T-Finance` and `T-Social`:  [https://github.com/squareRoot3/Rethinking-Anomaly-Detection](https://github.com/squareRoot3/Rethinking-Anomaly-Detection) 
 
 ## Structural Consistency Augmentation
-We use the diffusion wavelets to generate structural embeddings for nodes with high structral consistency, which are saved into file './data/xx_embedding.csv'.
-We put the generated structural embeddings of Amazon in './data/amazon_embedding.csv' for quick access.
+We use the diffusion wavelets to generate structural embeddings for nodes with high structral consistency, which are saved into file  `./data/xx_embedding.csv `.
+We put the generated structural embeddings of Amazon in  `./data/amazon_embedding.csv ` for quick access.
 
 The Structural Consistency Augmentation of other datasets below as an example for running instructions:
 ```python
@@ -36,7 +36,7 @@ python diffusion.py --dataset tsocial --output /data/tsocial_embedding.csv
 ```
 ## Running
 
-Running HyGAD on four benchmark datasets, which the hyper parameter settings are in the 'config/xx.yml':
+Running HyGAD on four benchmark datasets, which the hyper parameter settings are in the  `config/xx.yml `:
 ```python
 # Run Amazon
 python main.py --config config/amazon.yml --runs 5
