@@ -1,6 +1,6 @@
-# Hybrid Consistency Data Augmentation for Graph Anomaly Detection
+# Multi-faceted Consistency Data Augmentation for Graph Anomaly Detection
 
-PyTorch implementation of the paper "[Hybrid Consistency Data Augmentation for Graph Anomaly Detection]()".
+PyTorch implementation of the paper "[Multi-faceted Consistency Data Augmentation for Graph Anomaly Detection]()".
 
 #  Requirments
 + torch==2.4.0+cu121
